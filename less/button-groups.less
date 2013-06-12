@@ -228,28 +228,35 @@
   .border-radius(0 0 @borderRadiusLarge @borderRadiusLarge);
 }
 
-// Dropdowns within button groups 
-// ------------------------------
-.btn-group > .btn-group > .btn.dropdown-toggle {
+// Nested button groups, very useful for dropdowns
+// -------------------------------------------------
+.btn-group > .btn-group > .btn {
   .border-radius(0);
 }
 
-// remove extra border between consecutive buttons.
-.btn-group > .btn-group.dropdown+.btn-group.dropdown,
-.btn-group > .btn+.btn-group.dropdown,
-{
-    margin-left: -1px;    
-    margin-right: -1px;
-}
-
-// style for first and last element dropdowns
-.btn-group > .btn-group:first-child > .btn.dropdown-toggle {
+// style for first and last element of btn-groups
+// use last-of-type and first-of-type, as dropdown-menu may be last-child
+.btn-group > .btn-group:first-child > .btn:first-of-type {
   .border-top-left-radius(@baseBorderRadius);
   .border-bottom-left-radius(@baseBorderRadius);
+  margin-left: 1px;
+  margin-right: -1px;
 }
 
-.btn-group > .btn-group:last-child > .btn.dropdown-toggle {
+.btn-group > .btn-group:last-child > .btn:last-of-type {
   .border-top-right-radius(@baseBorderRadius);
   .border-bottom-right-radius(@baseBorderRadius);
-  margin-right: 0;
+  margin-right: 1px;
+}
+
+// fix margins between consecutive btns and btn-groups.
+.btn-group > .btn-group+.btn-group,
+.btn-group > .btn+.btn-group,
+.btn-group > .btn-group+.btn
+{
+  margin-left: 0px;    
+  margin-right: -1px; 
+}
+.btn-group > .btn+.btn-group {
+  margin-left: -1px;
 }
